@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    image: ghcr.io/mll11/python-docker
+    restart: always
+    ports:
+      - 5000:5000
