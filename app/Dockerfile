@@ -1,11 +1,11 @@
 FROM python:3.9.2-alpine
 
-WORKDIR /code
+WORKDIR /src
 
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY src/ .
+COPY ./src /src
 
-CMD [ "python", "./server.py" ] 
+CMD python server.py
