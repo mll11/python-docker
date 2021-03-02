@@ -5,8 +5,9 @@ services:
     build: ./app
     image: ghcr.io/mll11/python-docker
     restart: always
-    ports:
-      - 5000:5000
+    networks:
+      - backend-network
+      - frontend-network
   db:
     image: mysql:8.0.23
     command: '--default-authentication-plugin=mysql_native_password'
@@ -16,8 +17,16 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3306:3306
+    networks:
+      - backend-network
   proxy:
     image: nginx:1.18-alpine
     restart: always
     ports:
       - 80:80
+    networks:
+      - frontend-network
+
+networks:
+  backend-network:
+  frontend-network:
