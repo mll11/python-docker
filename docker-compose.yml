@@ -16,3 +16,8 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3306:3306
+  proxy:
+    image: nginx:1.18-alpine
+    restart: always
+    ports:
+      - 80:80
