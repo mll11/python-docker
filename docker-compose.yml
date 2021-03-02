@@ -4,6 +4,8 @@ services:
   app:
     build: ./app
     image: ghcr.io/mll11/python-docker
+    depends_on:
+      - db
     restart: always
     networks:
       - backend-network
@@ -20,7 +22,10 @@ services:
     networks:
       - backend-network
   proxy:
-    image: nginx:1.18-alpine
+    build: ./proxy
+    image: ghcr.io/mll11/python-docker-proxy
+    depends_on:
+      - app
     restart: always
     ports:
       - 80:80
