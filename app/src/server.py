@@ -1,4 +1,4 @@
-from flask import Flask
+import flask
 from datetime import datetime
 import mysql.connector
 
@@ -18,10 +18,19 @@ class DbManager:
         self.cursor.execute('DROP TABLE IF EXISTS testdata')
         self.cursor.execute(
             'CREATE TABLE testdata (id INT AUTO_INCREMENT PRIMARY KEY, test_value VARCHAR(255))')
+        self.cursor.executemany('INSERT INTO testdata (id, test_value) VALUES (%s, %s);', [
+                                (i, 'test #%d' % i) for i in range(1, 4)])
         self.connection.commit()
 
+    def getData(self):
+        self.cursor.execute('SELECT test_value FROM testdata')
+        valueList = []
+        for c in self.cursor:
+            valueList.append(c[0])
+        return valueList
 
-server = Flask(__name__)
+
+server = flask.Flask(__name__)
 dbConnection = None
 
 
@@ -44,7 +53,8 @@ def getDb():
             database='flask',
             user='root',
             passwordFilename='/run/secrets/secret-mysql-root-password')
-    return "OK"
+    valueList = dbConnection.getData()
+    return flask.jsonify({"result": valueList})
 
 
 if __name__ == "__main__":
