@@ -2,6 +2,11 @@ import flask
 from datetime import datetime
 import mysql.connector
 
+# Remote Debug Only
+# Note: Need to disable server debug mode.
+import ptvsd
+ptvsd.enable_attach(address=('0.0.0.0', 1111))
+
 
 class DbManager:
     def __init__(self, host='db', database=None, user=None, passwordFilename=None):
@@ -58,6 +63,6 @@ def getDb():
 
 
 if __name__ == "__main__":
-    # server.run(host='0.0.0.0')
-    # Run server in debug mode.
-    server.run(debug=True, host='0.0.0.0')
+    server.run(host='0.0.0.0')
+    # Run server in debug mode for local dev.
+    # server.run(debug=True, host='0.0.0.0')
