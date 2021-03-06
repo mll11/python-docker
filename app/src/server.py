@@ -4,8 +4,8 @@ import mysql.connector
 
 # Remote Debug Only
 # Note: Need to disable server debug mode.
-import ptvsd
-ptvsd.enable_attach(address=('0.0.0.0', 1111))
+import debugpy
+debugpy.listen(('0.0.0.0', 1111))
 
 
 class DbManager:
