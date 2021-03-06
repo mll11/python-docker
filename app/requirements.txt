@@ -2,4 +2,4 @@ Flask==1.1.2
 mysql-connector-python==8.0.23
 
 # Remote Debug Only
-ptvsd==4.3.2
+debugpy==1.2.1
