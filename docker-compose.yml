@@ -7,6 +7,8 @@ services:
     depends_on:
       - db
     restart: always
+    volumes: 
+      - ./app/src:/src
     secrets:
       - secret-mysql-root-password
     networks:
