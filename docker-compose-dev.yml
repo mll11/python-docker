@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app-dev
+    image: ghcr.io/mll11/python-docker-dev
+    restart: always
+    volumes:
+      # Mount local source directory to its container path for applying code changes.
+      - ./app-dev/src:/python-docker
+  proxy:
+    build: ./proxy
+    image: ghcr.io/mll11/python-docker-proxy
+    depends_on:
+      - app
+    restart: always
+    ports:
+      - 80:80
