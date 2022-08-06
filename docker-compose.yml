@@ -7,19 +7,13 @@ services:
     depends_on:
       - db
     restart: always
-    volumes: 
-      # For local dev.
-      - ./app/src:/src
-    ports:
-      # Remote Debug Only
-      - 1111:1111
     secrets:
       - secret-mysql-root-password
     networks:
       - backend-network
       - frontend-network
   db:
-    image: mysql:8.0.23
+    image: mysql:8.0.30
     command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     secrets:
