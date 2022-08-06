@@ -1,11 +1,5 @@
 import flask
-from datetime import datetime
 import mysql.connector
-
-# Remote Debug Only
-# Note: Need to disable server debug mode.
-import debugpy
-debugpy.listen(('0.0.0.0', 1111))
 
 
 class DbManager:
@@ -19,6 +13,7 @@ class DbManager:
             auth_plugin='mysql_native_password'
         )
         passwordFile.close()
+
         self.cursor = self.connection.cursor()
         self.cursor.execute('DROP TABLE IF EXISTS testdata')
         self.cursor.execute(
@@ -44,12 +39,6 @@ def home():
     return "Flask Demo"
 
 
-@server.route("/time")
-def time():
-    now = datetime.now()
-    return now.strftime("%B %d, %Y at %X")
-
-
 @server.route("/db")
 def getDb():
     global dbConnection
@@ -64,5 +53,3 @@ def getDb():
 
 if __name__ == "__main__":
     server.run(host='0.0.0.0')
-    # Run server in debug mode for local dev.
-    # server.run(debug=True, host='0.0.0.0')
