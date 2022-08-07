@@ -10,12 +10,12 @@
       "request": "attach",
       "connect": {
         "host": "localhost",
-        "port": 1111
+        "port": 10001
       },
       "pathMappings": [
         {
-          "localRoot": "${workspaceFolder}/app/src",
-          "remoteRoot": "/src"
+          "localRoot": "${workspaceFolder}/app-dev/src",
+          "remoteRoot": "/python-docker"
         }
       ]
     }
