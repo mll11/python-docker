@@ -17,8 +17,3 @@ def time():
     # return now.strftime("%a, %d %B, %Y at %X")
     # return now.strftime("%a, %d %b, %Y at %X")
     # return now.strftime("%a, %d %b, %y at %X")
-
-
-if __name__ == "__main__":
-    # Run server in debug mode for local dev.
-    app.run(debug=True, host='0.0.0.0')

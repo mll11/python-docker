@@ -8,6 +8,10 @@ services:
     volumes:
       # Mount local source directory to its container path for applying code changes.
       - ./app-dev/src:/python-docker
+    command: flask run --host 0.0.0.0
+    environment:
+      - FLASK_APP=/python-docker/server.py
+      - FLASK_ENV=development # enable debug mode
   proxy:
     build: ./proxy
     image: ghcr.io/mll11/python-docker-proxy
