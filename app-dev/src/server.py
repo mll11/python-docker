@@ -1,5 +1,10 @@
 import flask
 from datetime import datetime
+from os import getenv
+from debugger import initialize_debugger
+
+if getenv("DEBUGGER") == "true":
+    initialize_debugger()
 
 app = flask.Flask(__name__)
 
