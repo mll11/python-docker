@@ -5,6 +5,8 @@ services:
     build: ./app-dev
     image: ghcr.io/mll11/python-docker-dev
     restart: always
+    ports:
+      - 10001:10001 # port for remote debugging
     volumes:
       # Mount local source directory to its container path for applying code changes.
       - ./app-dev/src:/python-docker
@@ -12,6 +14,7 @@ services:
     environment:
       - FLASK_APP=/python-docker/server.py
       - FLASK_ENV=development # enable debug mode
+      - DEBUGGER=true # enable remote debugging
   proxy:
     build: ./proxy
     image: ghcr.io/mll11/python-docker-proxy
